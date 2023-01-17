@@ -1,0 +1,30 @@
+ID,RACE,TRACK,WINNER,TIME
+1,1vs1,Long Track,Purple Car,00:08
+2,1vs1,Short Track,Yellow Car,00:06
+3,1vs1,Medium Track,Blue Car,00:06
+4,1vs1,Long Track,Black Car,00:06
+5,1vs1,Long Track,Yellow Car,00:09
+6,1vs1,Medium Track,Orange Car,00:07
+7,1vs1,Short Track,Tie,00:04
+8,1vs1,Long Track,Purple Car,00:09
+9,Rally,Long Track,White Car,00:10
+10,1vs1,Medium Track,Tie,00:07
+11,1vs1,Short Track,Green Car,00:05
+12,1vs1,Short Track,Black Car,00:04
+13,Rally,Long Track,White Car,00:09
+14,1vs1,Medium Track,Tie,00:05
+15,1vs1,Short Track,Purple Car,00:05
+16,1vs1,Short Track,Tie,00:05
+17,1vs1,Short Track,White Car,00:04
+18,Rally,Long Track,White Car,00:10
+19,1vs1,Short Track,Yellow Car,00:03
+20,Rally,Long Track,White Car,00:09
+21,Rally,Long Track,Orange Car,00:07
+22,1vs1,Short Track,Orange Car,00:06
+23,1vs1,Long Track,Green Car,00:09
+24,1vs1,Short Track,Orange Car,00:04
+25,Rally,Long Track,White Car,00:10
+26,Rally,Long Track,White Car,00:07
+27,Rally,Long Track,White Car,00:09
+28,Rally,Long Track,Purple Car,00:08
+29,Rally,Long Track,Black Car,00:08

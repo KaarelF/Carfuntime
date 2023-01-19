@@ -17,6 +17,8 @@ class Car:
                f'Speed: {self.speed[-1]} ' \
                f'Boost: {self.boost[-1]}'
 
+    # TODO: If in all these methods you return the track_length,
+    #  the consider naming the methods like get_beginning_race_track_length()
     def beginning_race(self, z):
         self.track_length = z
         self.track_length.insert(0, self.init)
@@ -35,12 +37,15 @@ class Car:
                 self.distance += 1
             self.track_length.pop(a1)
             self.track_length.insert(0, '|')
+            # TODO: So if in all cases self.distance += 1
+            #  should we replicate it, or left at the end of the loop
             self.distance += 1
 
         return self.track_length
 
     def speed_race(self):
-
+        # TODO: Do not leave spaces after method def
+        # TODO: Avoid using one letter variables
         s = random.randint(self.speed[0], self.speed[-1])
         for i in range(s):
             self.track_length.insert(1, '_')
@@ -50,22 +55,30 @@ class Car:
         return self.track_length
 
     def boost_race(self):
+        # TODO: Do not leave spaces after method def
+        # TODO: Avoid using one letter variables
 
+        # TODO: So basically s = b ?
         s = random.randint(self.speed[0], self.speed[-1])
         b = random.randint(self.boost[0], self.boost[-1])
 
+        # TODO: Spaces before and after + operator
         for i in range(b+s):
             if b+s == 0:
                 break
+            # TODO: Spaces before and after - operator
             elif self.distance == len(self.track_length)-2:
                 self.track_length.pop(-1)
                 self.track_length.insert(1, '_')
                 self.distance += 1
+            # TODO: Spaces before and after - operator
             elif self.distance < len(self.track_length)-2:
                 self.track_length.pop(-2)
                 self.track_length.insert(1, '_')
                 self.distance += 1
             else:
+                # TODO: So if in all cases self.distance += 1
+                #  should we replicate it, or left at the end of the loop
                 self.distance += 1
                 self.track_length.pop(1)
                 self.track_length.insert(-1, '|')

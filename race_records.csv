@@ -28,3 +28,6 @@ ID,RACE,TRACK,WINNER,TIME
 27,Rally,Long Track,White Car,00:09
 28,Rally,Long Track,Purple Car,00:08
 29,Rally,Long Track,Black Car,00:08
+30,1vs1,Medium Track,Orange Car,00:08
+31,1vs1,Medium Track,White Car,00:11
+32,Rally,Long Track,White Car,00:09

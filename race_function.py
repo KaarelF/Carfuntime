@@ -1,3 +1,4 @@
+# TODO: Fix long imports styling as in the main file
 from car_sub import blue, red, green, \
     yellow, black, white, orange, purple
 from csv import writer

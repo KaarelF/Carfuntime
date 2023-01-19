@@ -1,5 +1,6 @@
 from car_master import Car
 
+# TODO: All good
 blue = Car(
     name='Blue Car',
     init='BLU',

@@ -28,3 +28,21 @@ ID,RACE,TRACK,WINNER,TIME
 27,Rally,Long Track,White Car,00:09
 28,Rally,Long Track,Purple Car,00:08
 29,Rally,Long Track,Black Car,00:08
+30,1vs1,Long Track,Blue Car,00:14
+31,Rally,Long Track,White Car,00:11
+32,Rally,Long Track,White Car,00:08
+33,1vs1,Long Track,Purple Car,00:10
+34,Rally,Long Track,Purple Car,00:08
+35,1vs1,Long Track,Orange Car,00:11
+36,1vs1,Medium Track,White Car,00:06
+37,1vs1,Short Track,Black Car,00:05
+38,1vs1,Short Track,Black Car,00:03
+39,Rally,Long Track,White Car,00:09
+40,Rally,Long Track,White Car,00:08
+41,1vs1,Medium Track,Tie,00:09
+42,1vs1,Short Track,Orange Car,00:07
+43,1vs1,Long Track,Orange Car,00:04
+44,1vs1,Short Track,Yellow Car,00:04
+45,1vs1,Medium Track,Red Car,00:08
+46,1vs1,Medium Track,White Car,00:07
+47,1vs1,Long Track,Green Car,00:12

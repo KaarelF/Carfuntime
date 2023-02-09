@@ -1,8 +1,8 @@
 Gold
-3
+500
 ID_Race
-29
+47
 ID_Bet
-13
+23
 
 # Acts as 'save game' file

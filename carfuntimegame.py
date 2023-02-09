@@ -1,10 +1,17 @@
-from car_sub import blue, red, green, \
-    yellow, black, white, orange, purple
-from track_sub import short_track, medium_track, long_track
+from car_sub import *
+from track_sub import *
 from time import sleep
-from race_function import choice_check, \
-    adding_records, save_info, replace_info, \
-    adding_bets, rally_car_pick, rally_result, race_result
+from race_function import (
+    choice_check,
+    adding_records,
+    save_info,
+    replace_info,
+    adding_bets,
+    rally_car_pick,
+    rally_result,
+    race_result
+)
+
 import csv
 import random
 import time
@@ -65,11 +72,13 @@ while game_over.lower() == 'yes':
     if menu_pick == 1:
         first_car = random.choice(car_list)
         second_car = random.choice(car_list)
-        while first_car == second_car:
+        while second_car == first_car:
             second_car = random.choice(car_list)
 
-        print(f' \nNext we have the {first_car.name} '
-              f'going against the {second_car.name} !!!\n ')
+        print(
+            f' \nNext we have the {first_car.name} '
+            f'going against the {second_car.name} !!!\n '
+        )
         print(f'Looks pretty close: \n{first_car}, \n{second_car}')
 
         race_track = random.choice(track_list)
@@ -95,16 +104,20 @@ while game_over.lower() == 'yes':
                 balance = int(save_info(1))
 
             sleep(0.5)
-            car_bet_pick = choice_check(f'Do you want to bet on: '
-                                        f'\n1. {first_car.name} '
-                                        f'\n2. {second_car.name} \nPick: ', 1, 2)
+            car_bet_pick = choice_check(
+                f'Do you want to bet on: '
+                f'\n1. {first_car.name} '
+                f'\n2. {second_car.name} \nPick: ', 1, 2
+            )
             if car_bet_pick == 1:
                 your_pick = first_car.name
             else:
                 your_pick = second_car.name
 
-            amount_bet = choice_check(f'How much you want to bet?'
-                                      f' Max bet is {balance}: ', 1, balance)
+            amount_bet = choice_check(
+                f'How much you want to bet?'
+                f' Max bet is {balance}: ', 1, balance
+            )
 
             id_bet += 1
             replace_info(5, id_bet)
@@ -121,32 +134,30 @@ while game_over.lower() == 'yes':
 
         start_time = time.time()
 
-        race_time1 = first_car.beginning_race(race_track1)
-        race_time2 = second_car.beginning_race(race_track2)
+        race_time1 = first_car.get_beginning_race_track_length(race_track1)
+        race_time2 = second_car.get_beginning_race_track_length(race_track2)
         print(*race_time1, sep='')
         print(*race_time2, sep='')
         sleep(0.5)
 
-        race_time1 = first_car.acceleration_race()
-        race_time2 = second_car.acceleration_race()
+        race_time1 = first_car.get_acceleration_race_track_length()
+        race_time2 = second_car.get_acceleration_race_track_length()
         print(*race_time1, sep='')
         print(*race_time2, sep='')
         sleep(0.5)
 
-        while first_car.distance < \
-                len(first_car.track_length) - 8 \
-                and second_car.distance < \
-                len(second_car.track_length) - 8:
-            race_time1 = first_car.speed_race()
-            race_time2 = second_car.speed_race()
+        while first_car.distance < len(first_car.track_length) - 8 \
+                and second_car.distance < len(second_car.track_length) - 8:
+            race_time1 = first_car.get_speed_race_track_length()
+            race_time2 = second_car.get_speed_race_track_length()
             print(*race_time1, sep='')
             print(*race_time2, sep='')
             sleep(0.5)
 
         while not first_car.distance >= len(first_car.track_length) \
                 and not second_car.distance >= len(second_car.track_length):
-            race_time1 = first_car.boost_race()
-            race_time2 = second_car.boost_race()
+            race_time1 = first_car.get_boost_race_track_length()
+            race_time2 = second_car.get_boost_race_track_length()
             print(*race_time1, sep='')
             print(*race_time2, sep='')
             sleep(0.5)
@@ -164,8 +175,11 @@ while game_over.lower() == 'yes':
             print(f'And the Winner is {winner_is} with the time {stopper}')
 
         if your_pick == winner_is:
-            print(f'Congratulations you WON, '
-                  f'\nHere is your reward of {amount_bet * 2} gold')
+            print(
+                f'Congratulations you WON, '
+                f'\nHere is your reward of '
+                f'{amount_bet * 2} gold'
+            )
             replace_info(1, balance + amount_bet)
             result = 'WIN'
             adding_bets(id_bet, amount_bet, result)
@@ -178,8 +192,13 @@ while game_over.lower() == 'yes':
         id_race += 1
         replace_info(3, id_race)
 
-        adding_records(id_race, '1vs1', race_track_namer.name,
-                       winner_is, stopper)
+        adding_records(
+            id_race,
+            '1vs1',
+            race_track_namer.name,
+            winner_is,
+            stopper
+        )
 
     elif menu_pick == 2:
         with open('race_records.csv', 'r') as race_records_file:
@@ -200,11 +219,14 @@ while game_over.lower() == 'yes':
 
     elif menu_pick == 5:
         code_hack = input('Please enter the code: ')
-        if code_hack.lower() == 'up up down down left lef right right b a':
-
-            print(f' \nNext we will have ALL the cars racing'
-                  f' \nAnd they are gonna have a epic '
-                  f'showdown on a {long_track.name}!!!\n ')
+        if code_hack.lower() == 'up up down down left left right right b a':
+            # TODO: Rally game and regular 1v1 could be separated
+            #  into files or functions resulting in a cleaner code
+            print(
+                f' \nNext we will have ALL the cars racing'
+                f' \nAnd they are gonna have a epic '
+                f'showdown on a {long_track.name}!!!\n '
+            )
             sleep(0.5)
             print('Here is the list of our Racers:')
             print(*car_list, sep='\n')
@@ -229,26 +251,32 @@ while game_over.lower() == 'yes':
                 print(f'Your balance is {balance} gold\n ')
                 if balance == 0:
                     sleep(0.5)
-                    print('Looks like you are out of funds, '
-                          'BUT we will lend you 100 gold\n ')
+                    print(
+                        'Looks like you are out of funds, '
+                        'BUT we will lend you 100 gold\n '
+                    )
                     replace_info(1, 100)
                     balance = int(save_info(1))
 
                 sleep(0.5)
-                car_bet_pick = choice_check(f'What car you want to bet on: '
-                                            f'\n1. {blue.name} '
-                                            f'\n2. {red.name}'
-                                            f'\n3. {green.name}'
-                                            f'\n4. {yellow.name}'
-                                            f'\n5. {black.name}'
-                                            f'\n6. {white.name}'
-                                            f'\n7. {orange.name}'
-                                            f'\n8. {purple.name} \nPick: ', 1, 8)
+                car_bet_pick = choice_check(
+                    f'What car you want to bet on: '
+                    f'\n1. {blue.name} '
+                    f'\n2. {red.name}'
+                    f'\n3. {green.name}'
+                    f'\n4. {yellow.name}'
+                    f'\n5. {black.name}'
+                    f'\n6. {white.name}'
+                    f'\n7. {orange.name}'
+                    f'\n8. {purple.name} \nPick: ', 1, 8
+                )
 
                 car_bet_pick = rally_car_pick(car_bet_pick)
 
-                amount_bet = choice_check(f'How much you want to bet?'
-                                          f' Max bet is {balance}: ', 1, balance)
+                amount_bet = choice_check(
+                    f'How much you want to bet?'
+                    f' Max bet is {balance}: ', 1, balance
+                )
 
                 id_bet += 1
                 replace_info(5, id_bet)
@@ -265,14 +293,14 @@ while game_over.lower() == 'yes':
 
             start_time = time.time()
 
-            rally_time1 = blue.beginning_race(rally_track1)
-            rally_time2 = red.beginning_race(rally_track2)
-            rally_time3 = green.beginning_race(rally_track3)
-            rally_time4 = yellow.beginning_race(rally_track4)
-            rally_time5 = black.beginning_race(rally_track5)
-            rally_time6 = white.beginning_race(rally_track6)
-            rally_time7 = orange.beginning_race(rally_track7)
-            rally_time8 = purple.beginning_race(rally_track8)
+            rally_time1 = blue.get_beginning_race_track_length(rally_track1)
+            rally_time2 = red.get_beginning_race_track_length(rally_track2)
+            rally_time3 = green.get_beginning_race_track_length(rally_track3)
+            rally_time4 = yellow.get_beginning_race_track_length(rally_track4)
+            rally_time5 = black.get_beginning_race_track_length(rally_track5)
+            rally_time6 = white.get_beginning_race_track_length(rally_track6)
+            rally_time7 = orange.get_beginning_race_track_length(rally_track7)
+            rally_time8 = purple.get_beginning_race_track_length(rally_track8)
 
             print(*rally_time1, sep='')
             print(*rally_time2, sep='')
@@ -284,14 +312,14 @@ while game_over.lower() == 'yes':
             print(*rally_time8, sep='')
             sleep(0.5)
 
-            rally_time1 = blue.acceleration_race()
-            rally_time2 = red.acceleration_race()
-            rally_time3 = green.acceleration_race()
-            rally_time4 = yellow.acceleration_race()
-            rally_time5 = black.acceleration_race()
-            rally_time6 = white.acceleration_race()
-            rally_time7 = orange.acceleration_race()
-            rally_time8 = purple.acceleration_race()
+            rally_time1 = blue.get_acceleration_race_track_length()
+            rally_time2 = red.get_acceleration_race_track_length()
+            rally_time3 = green.get_acceleration_race_track_length()
+            rally_time4 = yellow.get_acceleration_race_track_length()
+            rally_time5 = black.get_acceleration_race_track_length()
+            rally_time6 = white.get_acceleration_race_track_length()
+            rally_time7 = orange.get_acceleration_race_track_length()
+            rally_time8 = purple.get_acceleration_race_track_length()
 
             print(*rally_time1, sep='')
             print(*rally_time2, sep='')
@@ -312,14 +340,14 @@ while game_over.lower() == 'yes':
                     and orange.distance < len(orange.track_length) - 8 \
                     and purple.distance < len(purple.track_length) - 8:
 
-                rally_time1 = blue.speed_race()
-                rally_time2 = red.speed_race()
-                rally_time3 = green.speed_race()
-                rally_time4 = yellow.speed_race()
-                rally_time5 = black.speed_race()
-                rally_time6 = white.speed_race()
-                rally_time7 = orange.speed_race()
-                rally_time8 = purple.speed_race()
+                rally_time1 = blue.get_speed_race_track_length()
+                rally_time2 = red.get_speed_race_track_length()
+                rally_time3 = green.get_speed_race_track_length()
+                rally_time4 = yellow.get_speed_race_track_length()
+                rally_time5 = black.get_speed_race_track_length()
+                rally_time6 = white.get_speed_race_track_length()
+                rally_time7 = orange.get_speed_race_track_length()
+                rally_time8 = purple.get_speed_race_track_length()
 
                 print(*rally_time1, sep='')
                 print(*rally_time2, sep='')
@@ -340,14 +368,14 @@ while game_over.lower() == 'yes':
                     and not green.distance >= len(orange.track_length) \
                     and not purple.distance >= len(purple.track_length):
 
-                rally_time1 = blue.boost_race()
-                rally_time2 = red.boost_race()
-                rally_time3 = green.boost_race()
-                rally_time4 = yellow.boost_race()
-                rally_time5 = black.boost_race()
-                rally_time6 = white.boost_race()
-                rally_time7 = orange.boost_race()
-                rally_time8 = purple.boost_race()
+                rally_time1 = blue.get_boost_race_track_length()
+                rally_time2 = red.get_boost_race_track_length()
+                rally_time3 = green.get_boost_race_track_length()
+                rally_time4 = yellow.get_boost_race_track_length()
+                rally_time5 = black.get_boost_race_track_length()
+                rally_time6 = white.get_boost_race_track_length()
+                rally_time7 = orange.get_boost_race_track_length()
+                rally_time8 = purple.get_boost_race_track_length()
 
                 print(*rally_time1, sep='')
                 print(*rally_time2, sep='')
@@ -370,8 +398,10 @@ while game_over.lower() == 'yes':
                 print(f'And the Winner is {winner_is} with the time {stopper}')
 
             if your_pick == winner_is:
-                print(f'Congratulations you WON, '
-                      f'\nHere is your reward of {amount_bet * 2} gold')
+                print(
+                    f'Congratulations you WON, '
+                    f'\nHere is your reward of {amount_bet * 2} gold'
+                )
                 replace_info(1, balance + amount_bet)
                 result = 'WIN'
                 adding_bets(id_bet, amount_bet, result)
@@ -384,8 +414,13 @@ while game_over.lower() == 'yes':
             id_race += 1
             replace_info(3, id_race)
 
-            adding_records(id_race, 'Rally', long_track.name,
-                           winner_is, stopper)
+            adding_records(
+                id_race,
+                'Rally',
+                long_track.name,
+                winner_is,
+                stopper
+            )
 
         else:
             print('This is not the right CODE')

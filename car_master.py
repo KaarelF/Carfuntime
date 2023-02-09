@@ -17,57 +17,51 @@ class Car:
                f'Speed: {self.speed[-1]} ' \
                f'Boost: {self.boost[-1]}'
 
-    def beginning_race(self, z):
+    def get_beginning_race_track_length(self, z):
         self.track_length = z
         self.track_length.insert(0, self.init)
         return self.track_length
 
-    def acceleration_race(self):
-        a1 = random.randint(self.acc[0], self.acc[-1])
-        if a1-1 == 0:
-            self.track_length.pop(a1)
+    def get_acceleration_race_track_length(self):
+        acceleration = random.randint(self.acc[0], self.acc[-1])
+        if acceleration - 1 == 0:
+            self.track_length.pop(acceleration)
             self.track_length.insert(0, '|')
-            self.distance += 1
         else:
-            for i in range(a1-1):
+            for i in range(acceleration - 1):
                 self.track_length.insert(0, '_')
                 self.track_length.pop(-2)
                 self.distance += 1
-            self.track_length.pop(a1)
+            self.track_length.pop(acceleration)
             self.track_length.insert(0, '|')
-            self.distance += 1
-
+        self.distance += 1
         return self.track_length
 
-    def speed_race(self):
-
-        s = random.randint(self.speed[0], self.speed[-1])
-        for i in range(s):
+    def get_speed_race_track_length(self):
+        speed = random.randint(self.speed[0], self.speed[-1])
+        for i in range(speed):
             self.track_length.insert(1, '_')
             self.track_length.pop(-2)
             self.distance += 1
-
         return self.track_length
 
-    def boost_race(self):
-
-        s = random.randint(self.speed[0], self.speed[-1])
-        b = random.randint(self.boost[0], self.boost[-1])
-
-        for i in range(b+s):
-            if b+s == 0:
+    def get_boost_race_track_length(self):
+        speed = random.randint(self.speed[0], self.speed[-1])
+        boost = random.randint(self.boost[0], self.boost[-1])
+        for i in range(speed + boost):
+            if speed + boost == 0:
                 break
-            elif self.distance == len(self.track_length)-2:
+            elif self.distance == len(self.track_length) - 2:
                 self.track_length.pop(-1)
                 self.track_length.insert(1, '_')
                 self.distance += 1
-            elif self.distance < len(self.track_length)-2:
+            elif self.distance < len(self.track_length) - 2:
                 self.track_length.pop(-2)
                 self.track_length.insert(1, '_')
                 self.distance += 1
             else:
-                self.distance += 1
                 self.track_length.pop(1)
                 self.track_length.insert(-1, '|')
+                self.distance += 1
                 break
         return self.track_length

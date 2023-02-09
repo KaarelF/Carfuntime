@@ -1,5 +1,4 @@
-from car_sub import blue, red, green, \
-    yellow, black, white, orange, purple
+from car_sub import *
 from csv import writer
 
 
